@@ -59,7 +59,7 @@ error_reporting(E_ALL);
         <input type="submit" class="like-button" value="Deconnexion"/>
         <input type="hidden" name="disconnect" value="1"/>
       </form>
-      <a href="admin.php" class="like-button">Administration</a>
+      <a href=<?=($_SESSION['isAdmin'] == 1) ? "admin.php " : "admin_api.html " ?>class="like-button">Administration</a>
     <?php
       }
     ?>

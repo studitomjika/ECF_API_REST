@@ -29,6 +29,7 @@ $formConnect_message = "";
         $formConnect_message = '<p class="form-fail">Identifiants erronés.</p>';
       } else {
         $_SESSION["id_user"] = $user["id_employee"];
+        $_SESSION["isAdmin"] = $user["role_admin"];
       }
     }
   }

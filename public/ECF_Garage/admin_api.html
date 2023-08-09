@@ -4,30 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin API</title>
+  <link href="style.css?>" rel="stylesheet">
   <style>
-    /* COMMENTS */
-    .comment {
-      margin-top: 25px;
-      padding-bottom: 10px;
-      border: 1px solid black;
-      width: 20vw;
+    body {
+      flex-direction: column;
     }
     form {
       display: flex;
       flex-direction: column;
-      width: 500px;
+      width: 20vw;
     }
-    
+    form > input {
+      margin-bottom: 15px;
+    }
+    /* COMMENTS */
+    .comment {
+      width: 20vw;
+    }
+    #comments {
+      display: flex;
+	    justify-content: space-around;
+      flex-wrap: wrap;
+      /*width: 500px;*/
+    }
     </style>
 </head>
 <body>
-  <h1>page admin via API</h1>
+  <a href="index.php"><h1>Administration employé</h1></a>
 
-  <h2>Valider les commentaires</h2>
-  <div id="comments"></div>
-  <button type='button' name='validate-comments-btn' id='validate-comments-btn' class='update-input'>Valider les commentaires</button>
-
-  <h2>Ajouter une occasions</h2>
+  <h2>Ajouter une voiture d'occasions</h2>
   <form id="cardeal">
     <label>Titre: </label>
     <input type="text" name="title" id="title" value=""/>
@@ -42,7 +47,11 @@
   </form>
   <button type='button' name='add-cardeal-tn' id='add-cardeal-btn' class='add-input'>Ajouter</button>
 
-  <script src="admin_api_comment.js"></script>
+  <h2>Valider les commentaires</h2>
+  <div id="comments"></div>
+  <button type='button' name='validate-comments-btn' id='validate-comments-btn' class='update-input'>Valider les commentaires</button>
+
   <script src="admin_api_cardeal.js"></script>
+  <script src="admin_api_comment.js"></script>
 </body>
 </html>

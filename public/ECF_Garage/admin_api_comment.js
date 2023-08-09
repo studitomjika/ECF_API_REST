@@ -9,25 +9,23 @@ fetch("/api/comments")
   .then(function (json) {
     json['hydra:member'].forEach( comment => {
       comments.push(comment)
-      commentsDiv.innerHTML += (
+      let newComment = ""
+      newComment += (
+        "<div>"+
         "<div class='comment'>"+
         "<p>Commentaire: "+comment.message+"</p>"+
         "<p>Note: "+comment.grade+"/5</p>"+
-        "<p>De: "+comment.name+"</p>"
+        "<p>De: "+comment.name+"</p></div>"
       )
 
-      let cbInput = document.createElement("input")
-      cbInput.type = "checkbox"
-      cbInput.name = "comment_cb"
-      cbInput.id = "comment-"+comment.idCommentaire
-      cbInput.className = "update-input"
-      cbInput.setAttribute("onchange", 'handleClick(this)')
-      if( comment.accepted == 1 ) cbInput.setAttribute("checked", "checked")
-      commentsDiv.appendChild(cbInput)
+      let isChecked = ""
+      if( comment.accepted == 1 ) isChecked = "checked"
 
-      commentsDiv.innerHTML += (
-        "<label>Commentaire accepté</label></div>"
-      )
+      newComment +=(
+        "<input type='checkbox' name='comment_cb' id='comment-'"+comment.idCommentaire+" class='update-input' onchange='handleClick(this)' "+isChecked+" />"+
+        "<label>Commentaire accepté</label></div>")
+
+      commentsDiv.innerHTML += newComment
     })
   })
 
