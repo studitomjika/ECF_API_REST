@@ -13,6 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ApiResource()
  */
+#[ORM\Entity]
+#[ORM\Table(name: "used_cars")]
 class UsedCars
 {
     /**
@@ -22,6 +24,9 @@ class UsedCars
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
+    #[ORM\Column(name: "id_occasion", type: "integer", nullable: false)]
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: "IDENTITY")]
     private $idOccasion;
 
     /**
@@ -29,6 +34,7 @@ class UsedCars
      *
      * @ORM\Column(name="model", type="string", length=250, nullable=true)
      */
+    #[ORM\Column(name: "model", type: "string", length: 250, nullable: true)]
     private $model;
 
     /**
@@ -36,6 +42,7 @@ class UsedCars
      *
      * @ORM\Column(name="price", type="decimal", precision=6, scale=2, nullable=true)
      */
+    #[ORM\Column(name: "price", type: "decimal", precision: 6, scale: 2, nullable: true)]
     private $price;
 
     /**
@@ -43,6 +50,7 @@ class UsedCars
      *
      * @ORM\Column(name="kilometres", type="integer", nullable=true)
      */
+    #[ORM\Column(name: "kilometres", type: "integer", nullable: true)]
     private $kilometres;
 
     /**
@@ -50,6 +58,7 @@ class UsedCars
      *
      * @ORM\Column(name="year", type="integer", nullable=true)
      */
+    #[ORM\Column(name: "year", type: "integer", nullable: true)]
     private $year;
 
     /**
@@ -57,6 +66,7 @@ class UsedCars
      *
      * @ORM\Column(name="picture_link", type="string", length=250, nullable=true)
      */
+    #[ORM\Column(name: "picture_link", type: "string", length: 250, nullable: true)]
     private $pictureLink;
 
     public function getIdOccasion(): ?int

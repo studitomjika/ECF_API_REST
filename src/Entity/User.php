@@ -8,34 +8,60 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\Table(name: "employees")]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: "id_employee", type: "integer", nullable: false)]
     private ?int $id = null;
 
-    #[ORM\Column(length: 180, unique: true)]
+    #[ORM\Column(name: "login", type: "string", length: 255, nullable: false, unique: true)]
+    private ?string $username = null;
+
     private ?string $email = null;
 
-    #[ORM\Column]
     private array $roles = [];
+
+    /**
+    * @var bool|null
+    */
+    #[ORM\Column(name: "role_admin", type: "boolean", nullable: true)]
+    private $roleAdmin;
 
     /**
      * @var string The hashed password
      */
-    #[ORM\Column]
+    #[ORM\Column(name: "password", type: "string", length: 60, nullable: true)]
     private ?string $password = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(name: "name", type: "string", length: 250, nullable: true)]
     private ?string $Name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(name: "firstname", type: "string", length: 250, nullable: true)]
     private ?string $Firstname = null;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->username;
+    }
+
+    /**
+     * @deprecated since Symfony 5.3, use getUserIdentifier instead
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->username;
     }
 
     public function getEmail(): ?string
@@ -51,24 +77,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
-    public function getUserIdentifier(): string
-    {
-        return (string) $this->email;
-    }
-
-    /**
-     * @deprecated since Symfony 5.3, use getUserIdentifier instead
-     */
-    public function getUsername(): string
-    {
-        return (string) $this->email;
-    }
-
-    /**
      * @see UserInterface
      */
     public function getRoles(): array
@@ -76,6 +84,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
+
+        if ($this->isRoleAdmin()) {
+          array_push($roles, 'ROLE_ADMIN');
+        }
 
         return array_unique($roles);
     }
@@ -87,6 +99,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function isRoleAdmin(): ?bool
+    {
+        return $this->roleAdmin;
+    }
+
+    public function setRoleAdmin(?bool $roleAdmin): static
+    {
+        $this->roleAdmin = $roleAdmin;
+
+        return $this;
+    }
+    
     /**
      * @see PasswordAuthenticatedUserInterface
      */

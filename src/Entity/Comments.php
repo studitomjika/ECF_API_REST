@@ -13,6 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ApiResource()
  */
+#[ORM\Entity]
+#[ORM\Table(name: "comments")]
 class Comments
 {
     /**
@@ -22,6 +24,9 @@ class Comments
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
+    #[ORM\Column(name: "id_commentaire", type: "integer", nullable: false)]
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: "IDENTITY")]
     private $idCommentaire;
 
     /**
@@ -29,6 +34,7 @@ class Comments
      *
      * @ORM\Column(name="name", type="string", length=50, nullable=true)
      */
+    #[ORM\Column(name: "name", type: "string", length: 50, nullable: true)]
     private $name;
 
     /**
@@ -36,6 +42,7 @@ class Comments
      *
      * @ORM\Column(name="grade", type="integer", nullable=true)
      */
+    #[ORM\Column(name: "grade", type: "integer", nullable: true)]
     private $grade;
 
     /**
@@ -43,6 +50,7 @@ class Comments
      *
      * @ORM\Column(name="message", type="text", length=300, nullable=true)
      */
+    #[ORM\Column(name: "message", type: "text", length: 300, nullable: true)]
     private $message;
 
     /**
@@ -50,6 +58,7 @@ class Comments
      *
      * @ORM\Column(name="accepted", type="boolean", nullable=true, options={"default"="False"})
      */
+    #[ORM\Column(name: "accepted", type: "boolean", nullable: true, options: array("default" => false))]
     private $accepted = 'False';
 
     public function getIdCommentaire(): ?int

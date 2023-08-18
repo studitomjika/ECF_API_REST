@@ -4,6 +4,7 @@ let comments = []
 
 fetch("/api/comments")
   .then(function (response) {
+    console.log(response)
     return response.json();
   })
   .then(function (json) {
