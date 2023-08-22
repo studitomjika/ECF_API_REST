@@ -61,9 +61,12 @@ $formConnect_message = "";
           }
         ?>
 
-        <input type="submit" value="Se connecter" class="like-button">
+        <!--<input type="submit" value="Se connecter" class="like-button">-->
+        <button type='button' name='connect-btn' id='connect-btn' class=''>Se connecter</button>
     
       </form>
     </div>
   </div>
 </div>
+
+<script src="admin_api_login.js"></script>
