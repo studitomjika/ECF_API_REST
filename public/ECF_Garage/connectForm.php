@@ -55,10 +55,12 @@ $formConnect_message = "";
         <label for="password">Mot de passe</label>
         <input type="password" required id="password" name="password" placeholder="Votre mot de passe">
     
+        <p class="form-fail hidden" id="fail-technical">Erreur technique.</p>
+        <p class="form-fail hidden" id="fail-id">Identifiants erronés.</p>
         <?php
-          if ( !empty($formConnect_message) ) {
+          /*if ( !empty($formConnect_message) ) {
             echo $formConnect_message;
-          }
+          }*/
         ?>
 
         <!--<input type="submit" value="Se connecter" class="like-button">-->
@@ -69,4 +71,4 @@ $formConnect_message = "";
   </div>
 </div>
 
-<script src="admin_api_login.js"></script>
+<script src="admin_api_login.js" type="text/javascript"></script>

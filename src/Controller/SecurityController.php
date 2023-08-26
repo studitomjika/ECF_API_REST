@@ -12,8 +12,10 @@ class SecurityController extends AbstractController
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
+      var_dump("coucou");
+      print_r("coucou2");
          if ($this->getUser()) {
-             return $this->redirectToRoute('/ECF_Garage');
+             return $this->redirectToRoute('/ECF_Garage/index.php');
          }
 
         // get the login error if there is one
@@ -22,7 +24,7 @@ class SecurityController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         //return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
-        return $this->render('ECF_Garage/index.html', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('ECF_Garage/index.php', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
     #[Route(path: '/logout', name: 'app_logout')]
