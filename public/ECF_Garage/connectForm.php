@@ -1,6 +1,6 @@
 <?php
 
-$formConnect_send = false;
+/*$formConnect_send = false;
 $formConnect_error = false;
 $formConnect_message = "";
 
@@ -28,19 +28,19 @@ $formConnect_message = "";
         $formConnect_error = true;
         $formConnect_message = '<p class="form-fail">Identifiants erronés.</p>';
       } else {
-        $_SESSION["id_user"] = $user["id_employee"];
-        $_SESSION["isAdmin"] = $user["role_admin"];
+        //$_SESSION["id_user"] = $user["id_employee"];
+        //$_SESSION["isAdmin"] = $user["role_admin"];
       }
     }
   }
 
   if( $formConnect_send && !$formConnect_error ) {
     echo '<script>window.location="index.php"</script>';
-  }
+  }*/
   
 ?>
 
-<div id="modal-connect" class="modal<?php if( $formConnect_send && $formConnect_error) { echo ' show'; } ?>">
+<div id="modal-connect" class="modal<?php /*if( $formConnect_send && $formConnect_error) { echo ' show'; } */?>">
   <div>
     <div class="modal-form">
       <a class="close close-modal-onclick">&times;</a>
@@ -57,18 +57,10 @@ $formConnect_message = "";
     
         <p class="form-fail hidden" id="fail-technical">Erreur technique.</p>
         <p class="form-fail hidden" id="fail-id">Identifiants erronés.</p>
-        <?php
-          /*if ( !empty($formConnect_message) ) {
-            echo $formConnect_message;
-          }*/
-        ?>
 
-        <!--<input type="submit" value="Se connecter" class="like-button">-->
         <button type='button' name='connect-btn' id='connect-btn' class=''>Se connecter</button>
     
       </form>
     </div>
   </div>
 </div>
-
-<script src="admin_api_login.js" type="text/javascript"></script>

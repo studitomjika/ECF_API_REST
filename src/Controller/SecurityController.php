@@ -12,11 +12,9 @@ class SecurityController extends AbstractController
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-      var_dump("coucou");
-      print_r("coucou2");
-         if ($this->getUser()) {
-             return $this->redirectToRoute('/ECF_Garage/index.php');
-         }
+        if ($this->getUser()) {
+            return $this->redirectToRoute('/ECF_Garage/index.php');
+        }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();

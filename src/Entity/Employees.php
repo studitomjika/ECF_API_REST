@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,8 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="employees")
  * @ORM\Entity
+ * @ApiResource()
  */
-class Employees
+#[ORM\Entity]
+#[ORM\Table(name: "employees")]
+ class Employees
 {
     /**
      * @var int
@@ -19,6 +24,9 @@ class Employees
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
+    #[ORM\Column(name: "id_employee", type: "integer", nullable: false)]
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: "IDENTITY")]
     private $idEmployee;
 
     /**
@@ -26,6 +34,7 @@ class Employees
      *
      * @ORM\Column(name="name", type="string", length=250, nullable=true)
      */
+    #[ORM\Column(name: "name", type: "string", length: 250, nullable: true)]
     private $name;
 
     /**
@@ -33,6 +42,7 @@ class Employees
      *
      * @ORM\Column(name="firstname", type="string", length=250, nullable=true)
      */
+    #[ORM\Column(name: "firstname", type: "string", length: 250, nullable: true)]
     private $firstname;
 
     /**
@@ -40,6 +50,7 @@ class Employees
      *
      * @ORM\Column(name="login", type="string", length=255, nullable=true)
      */
+    #[ORM\Column(name: "login", type: "string", length: 255, nullable: true)]
     private $login;
 
     /**
@@ -47,6 +58,7 @@ class Employees
      *
      * @ORM\Column(name="password", type="string", length=60, nullable=true, options={"fixed"=true})
      */
+    #[ORM\Column(name: "password", type: "string", length: 60, options: array("fixed" => false))]
     private $password;
 
     /**
@@ -54,6 +66,7 @@ class Employees
      *
      * @ORM\Column(name="role_admin", type="boolean", nullable=true)
      */
+    #[ORM\Column(name: "role_admin", type: "boolean", nullable: true)]
     private $roleAdmin;
 
     public function getIdEmployee(): ?int

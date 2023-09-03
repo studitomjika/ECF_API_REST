@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
   session_start();
 
-  $PDO = DBconnect();
+  $PDO = connectToDB();
 
   $CONFIGS = [];
 
@@ -15,6 +15,15 @@ error_reporting(E_ALL);
 
   if( isset($_POST['disconnect'])) {
     session_unset();
+    if (isset($_SERVER['HTTP_COOKIE'])) {
+      $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
+      foreach($cookies as $cookie) {
+          $parts = explode('=', $cookie);
+          $name = trim($parts[0]);
+          setcookie($name, '', time()-1000);
+          setcookie($name, '', time()-1000, '/');
+      }
+  }
   }
 
 ?>
@@ -49,7 +58,7 @@ error_reporting(E_ALL);
   <aside class="flex col">
     <a href="index.php"><h1>Garage V. Parrot</h1></a>
     <?php
-      if( !isset($_SESSION['id_user'])) {
+      if( !isset($_SESSION['user'])) {
           if ( !empty($CONFIGS['formulaire_connect']) ) {
             echo '<a class="like-button open-modal-onclick" data-modal="modal-connect">Se connecter</a>';
           }
@@ -59,7 +68,7 @@ error_reporting(E_ALL);
         <input type="submit" class="like-button" value="Deconnexion"/>
         <input type="hidden" name="disconnect" value="1"/>
       </form>
-      <a href=<?=($_SESSION['isAdmin'] == 1) ? "admin.php " : "admin_api.html " ?>class="like-button">Administration</a>
+      <a href=<?=($_SESSION['user_admin']) ? "admin.php " : "admin_api.html" ?> class="like-button">Administration</a>
     <?php
       }
     ?>
@@ -130,7 +139,8 @@ error_reporting(E_ALL);
 
   <script src="filters.js" type="text/javascript"></script>
   <script src="modals.js" type="text/javascript"></script>
+  <script src="admin_api_login.js" type="text/javascript"></script>
 </body>
 </html>
 
-<?php DBdisconnect(); ?>
+<?php disconnectOfDB(); ?>

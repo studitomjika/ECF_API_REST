@@ -2,7 +2,7 @@
 require_once 'security.php';
 require_once 'functions.php';
 
-$PDO = DBconnect();
+$PDO = connectToDB();
 global $PDO;
 
 $formHours_send = false;
@@ -32,6 +32,6 @@ $formHours_message = "";
     echo '<script>window.location="admin.php"</script>';
   }
   
-  DBdisconnect();
+  disconnectOfDB();
 
 ?>

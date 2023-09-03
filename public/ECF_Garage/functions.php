@@ -1,6 +1,6 @@
 <?php
 
-  function DBconnect() {
+  function connectToDB() {
     try {
       $pdo = new SQLite3('../../var/Garage.db');
     } catch (PDOException $e) {
@@ -10,7 +10,7 @@
     return $pdo;
   }
 
-  function DBdisconnect() {
+  function disconnectOfDB() {
     global $PDO;
 
     $PDO = null;

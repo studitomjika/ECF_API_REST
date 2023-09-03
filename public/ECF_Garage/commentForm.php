@@ -28,7 +28,7 @@ $formComment_message = "";
     echo '<div id="modal-comment-success" class="modal show"><div>';
     echo '<div class="modal-form">';
     echo '<a class="close close-modal-onclick">&times;</a>';
-    echo '<p class="form-success">Formulaire envoyé.</p>';
+    echo '<p class="form-success">Votre commentaire a bien été envoyé.<br>Nous le validerons dans les plus brefs délais.</p>';
     echo '</div></div></div>';
   }
 ?>

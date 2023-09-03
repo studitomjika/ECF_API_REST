@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 
   require_once 'security.php';
   require_once 'functions.php';
-  $PDO = DBconnect();
+  $PDO = connectToDB();
   global $PDO;
 
   $results = $PDO->query('SELECT * FROM services');
@@ -21,7 +21,7 @@ error_reporting(E_ALL);
     array_push($opening_hours, $row);
   }
 
-  DBdisconnect();
+  disconnectOfDB();
 
   echo '<h1>page admin V. Parrot</h1>';
   echo '<h2>Editer les services</h2>';

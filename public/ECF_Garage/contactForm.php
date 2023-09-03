@@ -15,7 +15,9 @@ $formContact_message = "";
     $message = $_POST['message'];
     $id_car_deal = $_POST['id_car_deal'];
 
-    $query = "INSERT INTO messages (name, email, phone_number, subject, message, id_occasion) VALUES (:firstname, :mail, :tel, :subject, :message, :id_car_deal)";
+    $query =
+    "INSERT INTO messages (name, email, phone_number, subject, message, id_occasion)
+             VALUES (:firstname, :mail, :tel, :subject, :message, :id_car_deal)";
     $PDOstmt = $PDO->prepare($query);
     $PDOstmt->bindValue(':firstname', $firstname);
     $PDOstmt->bindValue(':mail', $mail);

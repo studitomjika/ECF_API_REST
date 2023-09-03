@@ -21,9 +21,9 @@ fetch("/api/comments")
 
       let isChecked = ""
       if( comment.accepted == 1 ) isChecked = "checked"
-
+console.log(comment.idCommentaire)
       newComment +=(
-        "<input type='checkbox' name='comment_cb' id='comment-'"+comment.idCommentaire+" class='update-input' onchange='handleClick(this)' "+isChecked+" />"+
+        "<input type='checkbox' name='comment_cb' id='comment-"+comment.idCommentaire+"' class='update-input' onchange='handleClick(this)' "+isChecked+" />"+
         "<label>Commentaire accepté</label></div>")
 
       commentsDiv.innerHTML += newComment

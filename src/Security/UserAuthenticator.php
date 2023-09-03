@@ -44,15 +44,14 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-      var_dump('success');
-      print_r('success');
-        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
-            return new RedirectResponse($targetPath);
-        }
+      $user = $token->getUser();
+      if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
+          return new RedirectResponse('/ECF_Garage/index.php');
+      }
 
-        // For example:
-        return new RedirectResponse($this->urlGenerator->generate('/ECF_Garage/index.php'));
-        //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+      // For example:
+      return new RedirectResponse($this->urlGenerator->generate('/ECF_Garage/index.php'));
+      //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
     protected function getLoginUrl(Request $request): string

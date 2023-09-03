@@ -1,8 +1,6 @@
 let connectButton = document.getElementById("connect-btn")
 connectButton.onclick = login
 
-let token
-
 function login (event) {
 
   const username = document.getElementById("login").value
@@ -26,23 +24,14 @@ function login (event) {
     body: JSON.stringify(userLogin)
   })
   .then(function (response) {
-    console.log("ici")
     if (response.status == 401)
     {
       error = "fail-id"
       throw error
     }
-    else
+    else // authentification success
     {
-      let dc = document.cookie
-      console.log(dc)// pas de BEARER à cause de httpOnly
-      
-      //document.getElementById("admin-btn") //show
-      //document.getElementById("connect-btn") //change name and target to logout
-//      $_SESSION["id_user"] = $user["id_employee"];
-//      $_SESSION["isAdmin"] = $user["role_admin"];
-
-      window.location="index.php" 
+      window.location="index.php"
     }
   })
   .catch(function(error) {

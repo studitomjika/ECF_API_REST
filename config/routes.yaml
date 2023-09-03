@@ -4,3 +4,7 @@
 authentication_token:
   path: /api/login
   methods: ['POST']
+
+logout:
+  path: /api/logout
+  methods: ['GET']
